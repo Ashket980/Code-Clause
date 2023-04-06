@@ -4,7 +4,7 @@
 
 This is a small offline-first mobile-friendly unit conversion tool for the browser. 
 
-A demo is available [here](https://ashket980.github.io/Code-Clause/Unit_Converter).
+A demo is available [here](http://bit.ly/3UejcLg).
 
 ## Usage
 
