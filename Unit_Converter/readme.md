@@ -2,7 +2,7 @@
 
 ## Overview
 
-This is a very small offline-first mobile-friendly unit conversion tool for the browser. There are many full featured unit converters out there, so every effort has been made to keep this as simple, fast, and portable as possible.
+This is a small offline-first mobile-friendly unit conversion tool for the browser. 
 
 A demo is available [here](https://ashket980.github.io/Code-Clause/Unit_Converter).
 
@@ -128,12 +128,6 @@ A full list of the currently supported units is below.
 * mpm
 * mps
 * fps
-
-
-## Credits
-
-* [Milligram](https://github.com/milligram/milligram) CSS by @cjpatoilo, prototyped using [dropin-minimal-css](https://github.com/dohliam/dropin-minimal-css)
-* [github-corners](https://github.com/tholman/github-corners) by @tholman
 
 ## License 
 
