@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Integration</title>
+	<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600&display=swap');
+
+*{
+  font-family: 'Poppins', sans-serif;
+  margin:0; padding:0;
+  box-sizing: border-box;
+  outline: none; border:none;
+  text-transform: capitalize;
+  transition: all .2s linear;
+}
+
+.container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding:25px;
+  min-height: 100vh;
+  background:#2ecc71
+}
+
+.container form{
+  padding:20px;
+  width:700px;
+  background: #fff;
+  box-shadow: 0 5px 10px rgba(0,0,0,.1);
+}
+
+.container form .row{
+  display: flex;
+  flex-wrap: wrap;
+  gap:15px;
+}
+
+.container form .row .col{
+  flex:1 1 250px;
+}
+
+.container form .row .col .title{
+  font-size: 20px;
+  color:#333;
+  padding-bottom: 5px;
+  text-transform: uppercase;
+}
+
+.container form .row .col .inputBox{
+  margin: 15px;
+}
+
+.container form .row .col .inputBox span{
+  margin-bottom: 10px;
+  display: block;
+}
+
+.container form .row .col .inputBox input{
+  width: 100%;
+  border:1px solid #ccc;
+  padding:10px 15px;
+  font-size: 15px;
+  text-transform: none;
+}
+
+.container form .row .col .inputBox input:focus{
+  border:1px solid #000;
+}
+
+.container form .row .col .flex{
+  display: flex;
+  gap:15px;
+}
+
+.container form .row .col .flex .inputBox{
+  margin-top: 5px;
+}
+
+.container form .row .col .inputBox img{
+  height: 34px;
+  margin-top: 5px;
+  filter: drop-shadow(0 0 1px #000);
+}
+
+.submit-btn{
+  width: 100%;
+  padding:12px;
+  font-size: 20px;
+  font-weight: bold;
+  background: #186f3d;
+  color:#fff;
+  cursor: pointer;
+}
+
+.submit-btn:hover{
+  background: #2ecc71;
+}
+</style>
+
+<body>
+    <div class="container">
+        <form action="">
+            <div class="row">
+                <div class="col">
+                    <h3 class="title">billing address</h3>
+                    <div class="inputBox">
+                        <span>Full Name :</span>
+                        <input type="text" placeholder="John Doe" id="Name" required>
+                    </div>
+                    <div class="inputBox">
+                        <span>Phone :</span>
+                        <input type="number" placeholder="Enter 10 digit phone number" id="Phone" required>
+                    </div>
+                    <div class="inputBox">
+                        <span>E-mail :</span>
+                        <input type="email" placeholder="abc@example.com" id="Mail" required>
+                    </div>
+                    <div class="inputBox">
+                        <span>Address :</span>
+                        <input type="text" placeholder="room - street - locality">
+                    </div>
+                    <div class="inputBox">
+                        <span>City :</span>
+                        <input type="text" placeholder="Mumbai">
+                    </div>
+                    <div class="flex">
+                        <div class="inputBox">
+                            <span>Country :</span>
+                            <input type="text" placeholder="India">
+                        </div>
+                        <div class="inputBox">
+                            <span>Zip Code :</span>
+                            <input type="text" placeholder="123 456">
+                        </div>
+                    </div>
+                    <div class="inputBox">
+                        <span>Please enter amount to be paid :</span>
+                        <input type="number" id="amount" name="amount">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div>
+        <button id="payBtn" type= "submit" class="submit-btn" onclick="makePayment()">Pay Now</button>
+    </div>
+
+	<script>
+		function makePayment() {
+			var amount = document.getElementById('amount').value;
+			var options = {
+				key: 'rzp_test_vhF6y5mMOrXAZ1',
+				amount: amount * 100, 
+				currency: 'INR',
+				name: 'Code Clause',
+				description: 'Payment Integration',
+				image: '',
+				handler: function(response) {
+					alert('Payment Successful!');
+				},
+				prefill: {
+					name : document.getElementById("Name").value,
+					email: document.getElementById("Mail").value,
+					contact: document.getElementById("Phone").value
+				},
+				notes: {
+					address: 'Demo Store Address'
+				},
+				theme: {
+					color: '#6af1a2'
+				}
+			};
+			var rzp = new Razorpay(options);
+			rzp.open();
+		}
+	</script>
+</body>
+</html>
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Payment Form</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<style>
+body{background-image:URL(./bg2.webp);
+    background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: 1950px 1000px; }
+         </style>
+    
+<body>
+    <div class="container">
+        <h1>Confirm Your Payment</h1>
+        <div class="first-row">
+            <div class="owner">
+                <h3>Owner</h3>
+                <div class="input-field">
+                    <input type="text">
+                </div>
+            </div>
+            <div class="cvv">
+                <h3>CVV</h3>
+                <div class="input-field">
+                    <input type="password">
+                </div>
+            </div>
+        </div>
+        <div class="second-row">
+            <div class="card-number">
+                <h3>Card Number</h3>
+                <div class="input-field">
+                    <input type="text">
+                </div>
+            </div>
+        </div>
+        <div class="third-row">
+            <h3>VALID THRU</h3>
+            <div class="selection">
+                <div class="date">
+                    <select name="months" id="months">
+                        <option value="Jan">Jan</option>
+                        <option value="Feb">Feb</option>
+                        <option value="Mar">Mar</option>
+                        <option value="Apr">Apr</option>
+                        <option value="May">May</option>
+                        <option value="Jun">Jun</option>
+                        <option value="Jul">Jul</option>
+                        <option value="Aug">Aug</option>
+                        <option value="Sep">Sep</option>
+                        <option value="Oct">Oct</option>
+                        <option value="Nov">Nov</option>
+                        <option value="Dec">Dec</option>
+                      </select>
+                      <select name="years" id="years">
+                        <option value="2030">2030</option>
+                        <option value="2029">2029</option>
+                        <option value="2028">2028</option>
+                        <option value="2027">2027</option>
+                        <option value="2026">2026</option>
+                        <option value="2025">2025</option>
+                        <option value="2024">2024</option>
+                        <option value="2023">2023</option>
+                        <option value="2022">2022</option>
+                        <option value="2021">2021</option>
+                        <option value="2020">2020</option>
+                        <option value="2019">2019</option>
+                        <option value="2018">2018</option>
+                        <option value="2017">2017</option>
+                        <option value="2016">2016</option>
+                        <option value="2015">2015</option>
+                      </select>
+                </div>
+                <div class="cards">
+                    <img src="./mc.png" alt="">
+                    <img src="./vi.png" alt="">
+                    <img src="./pp.png" alt="">
+                </div>
+            </div>    
+        </div>
+        <a href="">Confirm</a>
+    </div>
+</body>
+</html> -->
+
+
+
